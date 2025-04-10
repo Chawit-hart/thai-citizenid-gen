@@ -13,6 +13,4 @@ export function exportPeople(count: number) {
 
   exportToJson(people, 'output/people.json');
   exportToCsv(people, 'output/people.csv');
-
-  console.log(`✅ Exported ${count} people to output/people.json and output/people.csv`);
 }
