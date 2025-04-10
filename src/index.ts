@@ -1,20 +1,18 @@
-import * as fs from 'fs';
-import { generateThaiID } from './idGenerator';
-import { getRandomThaiName } from './fakerData';
+import { generateMockPerson } from './fakerData';
 import { exportToJson, exportToCsv } from './exporter';
 
-const people = Array.from({ length: 10 }, () => {
-  const { firstName, lastName } = getRandomThaiName();
-  return {
-    id: generateThaiID(),
-    firstName,
-    lastName
-  };
-});
+export function generatePeople(count: number) {
+  return Array.from({ length: count }, () => generateMockPerson());
+}
 
-fs.mkdirSync('output', { recursive: true });
+export function exportPeople(count: number) {
+  const people = generatePeople(count);
 
-exportToJson(people, 'output/people.json');
-exportToCsv(people, 'output/people.csv');
+  const fs = require('fs');
+  fs.mkdirSync('output', { recursive: true });
 
-console.log("✅ Exported to output/people.json and output/people.csv");
+  exportToJson(people, 'output/people.json');
+  exportToCsv(people, 'output/people.csv');
+
+  console.log(`✅ Exported ${count} people to output/people.json and output/people.csv`);
+}

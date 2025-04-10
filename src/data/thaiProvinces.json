@@ -1,0 +1,96 @@
+[
+  {
+    "province": "กรุงเทพมหานคร",
+    "districts": [
+      {
+        "district": "ห้วยขวาง",
+        "subdistricts": [
+          {"subdistrict": "แขวงห้วยขวาง", "postcode": "10310"},
+          {"subdistrict": "แขวงลาดพร้าว", "postcode": "10320"}
+        ]
+      },
+      {
+        "district": "บางรัก",
+        "subdistricts": [
+          {"subdistrict": "แขวงบางรัก", "postcode": "10500"}
+        ]
+      },
+      {
+        "district": "บางนา",
+        "subdistricts": [
+          {"subdistrict": "แขวงบางนา", "postcode": "10260"}
+        ]
+      }
+    ]
+  },
+  {
+    "province": "เชียงใหม่",
+    "districts": [
+      {
+        "district": "เมืองเชียงใหม่",
+        "subdistricts": [
+          {"subdistrict": "แขวงเมืองเชียงใหม่", "postcode": "50200"},
+          {"subdistrict": "แขวงช้างเผือก", "postcode": "50230"}
+        ]
+      },
+      {
+        "district": "หางดง",
+        "subdistricts": [
+          {"subdistrict": "แขวงหางดง", "postcode": "50230"}
+        ]
+      }
+    ]
+  },
+  {
+    "province": "ภูเก็ต",
+    "districts": [
+      {
+        "district": "เมืองภูเก็ต",
+        "subdistricts": [
+          {"subdistrict": "แขวงเมืองภูเก็ต", "postcode": "83000"}
+        ]
+      },
+      {
+        "district": "กะทู้",
+        "subdistricts": [
+          {"subdistrict": "แขวงกะทู้", "postcode": "83120"}
+        ]
+      }
+    ]
+  },
+  {
+    "province": "นครราชสีมา",
+    "districts": [
+      {
+        "district": "เมืองนครราชสีมา",
+        "subdistricts": [
+          {"subdistrict": "แขวงเมืองนครราชสีมา", "postcode": "30000"},
+          {"subdistrict": "แขวงหนองบัว", "postcode": "30100"}
+        ]
+      },
+      {
+        "district": "ครบุรี",
+        "subdistricts": [
+          {"subdistrict": "แขวงครบุรี", "postcode": "30270"}
+        ]
+      }
+    ]
+  },
+  {
+    "province": "สมุทรปราการ",
+    "districts": [
+      {
+        "district": "เมืองสมุทรปราการ",
+        "subdistricts": [
+          {"subdistrict": "แขวงเมืองสมุทรปราการ", "postcode": "10270"}
+        ]
+      },
+      {
+        "district": "บางพลี",
+        "subdistricts": [
+          {"subdistrict": "แขวงบางพลี", "postcode": "10540"}
+        ]
+      }
+    ]
+  }
+]
