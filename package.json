@@ -1,6 +1,6 @@
 {
   "name": "thai-citizenid-gen",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,16 +33,16 @@
     "url": "https://github.com/Chawit-hart/thai-citizenid-gen/issues"
   },
   "homepage": "https://github.com/Chawit-hart/thai-citizenid-gen#readme",
-  "description": "",
+  "description": "A library for generating valid Thai Citizen IDs and mock Thai personal data. Updated to correctly follow the ID generation algorithm and resolve security vulnerabilities in dependencies.",
   "devDependencies": {
     "@types/node": "^22.14.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.6.0",
     "commander": "^13.1.0",
     "csv-writer": "^1.6.0",
-    "faker": "^6.6.6",
     "inquirer": "^12.5.2"
   }
 }
