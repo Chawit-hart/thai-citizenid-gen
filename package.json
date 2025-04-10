@@ -1,0 +1,39 @@
+{
+  "name": "thai-citizenid-gen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "thai",
+    "id",
+    "citizen",
+    "thailand",
+    "national-id",
+    "thai-id",
+    "faker",
+    "generator",
+    "mock-data",
+    "test-data",
+    "testing",
+    "registration",
+    "form",
+    "e-kyc",
+    "identity"
+  ],
+  "author": "Chawit Tanachochaow",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "csv-writer": "^1.6.0",
+    "faker": "^6.6.6",
+    "inquirer": "^12.5.2"
+  }
+}
