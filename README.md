@@ -18,33 +18,105 @@ npm install thai-citizenid-gen
 
 ## Usage
 
+### Generate Data Without Export :
+
 ```ts
-import { generateThaiID, getRandomThaiName } from 'thai-citizenid-gen';
+import { generatePeople } from 'thai-citizenid-gen';
 
-const id = generateThaiID();
-const { firstName, lastName } = getRandomThaiName();
-
-console.log(`${firstName} ${lastName} (${id})`);
+const people = generatePeople(10);
+console.log(people);
 ```
-Sample output:
+
+### Generate Data and Export as JSON/CSV : 
+```ts
+import { exportPeople } from 'thai-citizenid-gen';
+
+const peopleCount = 10;
+exportPeople(peopleCount);
+```
+## API Reference
 
 ```ts
-{
-  id: "1234567890123",
-  firstName: "สมชาย",
-  lastName: "ใจดี"
-}
+getRandomThaiName()
+```
+Returns a random first and last name from the provided Thai names.
+
+```ts
+generateMockPerson()
+```
+### Generates a complete mock person data object that includes:
+
+`id`
+
+`firstName`, `lastName`, `gender`
+
+`birthDate`, `age`
+
+`religion`
+
+`laserCode`
+
+`issuedDate`, `expiredDate`
+
+`englishName`
+
+`province`, `district`, `subdistrict`, `postcode`
+
+`address` (formatted differently for Bangkok)
+
+```ts
+generatePeople(count: number)
+```
+Returns an array of mock person objects according to the specified count.
+
+```ts
+exportPeople(count: number)
+```
+Generates mock person data and exports the data to `output/people.json` and `output/people.csv`.
+
+### Sample output:
+
+#### JSON
+```json
+[
+  {
+    "id": "2657827304927",
+    "firstName": "สมหญิง",
+    "lastName": "บุญมา",
+    "gender": "หญิง",
+    "birthDate": "1967-10-08",
+    "age": 57,
+    "religion": "พุทธ",
+    "laserCode": "JT5802609-356",
+    "issuedDate": "2024-05-20",
+    "expiredDate": "2034-05-18",
+    "englishName": "สมหญิง บุญมา",
+    "province": "เชียงใหม่",
+    "district": "เมืองเชียงใหม่",
+    "subdistrict": "แขวงเมืองเชียงใหม่",
+    "postcode": "50200",
+    "address": "123 หมู่ 4 ต.แขวงเมืองเชียงใหม่ อ.เมืองเชียงใหม่ จ.เชียงใหม่ 50200"
+  },
+]
+```
+
+#### CSV
+```csv
+id,firstName,lastName,gender,birthDate,age,religion,laserCode,issuedDate,expiredDate,englishName,province,district,subdistrict,postcode,address
+2657827304927,สมหญิง,บุญมา,หญิง,1967-10-08,57,พุทธ,JT5802609-356,2024-05-20,2034-05-18,สมหญิง บุญมา,เชียงใหม่,เมืองเชียงใหม่,แขวงเมืองเชียงใหม่,50200,"123 หมู่ 4 ต.แขวงเมืองเชียงใหม่ อ.เมืองเชียงใหม่ จ.เชียงใหม่ 50200"
 ```
 
 ## Use Cases
 
-* Test registration forms or national ID input fields
+* Testing registration forms and e-KYC systems.
 
-* Generate fake user data for dev/staging environments
+* Generating fake user data for development or staging environments.
 
-* Use in automated testing or CI/CD pipelines
+* Populating unit tests and CI/CD pipelines with realistic mock data.
 
-* Mock data for systems involving Thai citizen information
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have improvements or bug fixes.
 
 ## License
 
