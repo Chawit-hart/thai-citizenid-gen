@@ -1,6 +1,6 @@
 {
   "name": "thai-citizenid-gen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +24,14 @@
   ],
   "author": "Chawit Tanachochaow",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chawit-hart/thai-citizenid-gen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chawit-hart/thai-citizenid-gen/issues"
+  },
+  "homepage": "https://github.com/Chawit-hart/thai-citizenid-gen#readme",
   "description": "",
   "devDependencies": {
     "@types/node": "^22.14.0",

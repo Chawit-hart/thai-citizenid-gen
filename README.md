@@ -2,8 +2,6 @@
 
 Generate valid Thai national ID numbers and mock Thai names — perfect for testing registration systems and mock user data.
 
----
-
 ## Features
 
 - ✅ Generate valid 13-digit Thai citizen ID numbers
@@ -11,7 +9,6 @@ Generate valid Thai national ID numbers and mock Thai names — perfect for test
 - ✅ Export as objects (can be used for JSON, CSV, etc.)
 - ✅ Tiny and zero-dependency core
 
----
 
 ## Installation
 
