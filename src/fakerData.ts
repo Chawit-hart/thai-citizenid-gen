@@ -2,14 +2,34 @@ import { faker } from '@faker-js/faker';
 import religions from './data/thaiReligions.json';
 import provincesData from './data/thaiProvinces.json';
 
-function generateBirthDate(): string {
-  return faker.date.birthdate({ min: 18, max: 75, mode: 'age' }).toISOString().split('T')[0];
+function generateBirthDate(year?: number): string {
+  const y = year ?? faker.date.past().getFullYear();
+  const m = faker.date.month({ abbreviated: false });
+  const d = faker.number.int({ min: 1, max: 28 });
+  return `${y}-${m}-${d}`;
 }
+
 
 function calculateAge(birthDate: string): number {
   const birth = new Date(birthDate);
   return Math.floor((new Date().getTime() - birth.getTime()) / (1000 * 3600 * 24 * 365));
 }
+
+export const defaultOptions: Partial<GenerateOptions> = {
+  gender: undefined,
+  bornYear: undefined,
+  religion: undefined,
+  seed: undefined
+};
+
+
+export interface GenerateOptions {
+  gender: 'ชาย' | 'หญิง';
+  bornYear: number;
+  religion: string;
+  seed: number;
+}
+
 
 function generateThaiID(): string {
   const idNumber = [...Array(12)].map(() => Math.floor(Math.random() * 10));
@@ -18,13 +38,18 @@ function generateThaiID(): string {
   return idNumber.join('');
 }
 
-export function generateMockPerson() {
-  const gender = faker.helpers.arrayElement(['ชาย', 'หญิง']);
+export function generateMockPerson(options?: Partial<GenerateOptions>) {
+  if (options?.seed !== undefined) {
+    faker.seed(options.seed);
+  }
+  const gender = options?.gender ?? faker.helpers.arrayElement(['ชาย', 'หญิง']);
   const firstName = faker.person.firstName(gender === 'ชาย' ? 'male' : 'female');
   const lastName = faker.person.lastName();
-  const birthDate = generateBirthDate();
+  const birthDate = options?.bornYear
+    ? generateBirthDate(options.bornYear)
+    : generateBirthDate();
   const age = calculateAge(birthDate);
-  const religion = faker.helpers.arrayElement(religions);
+  const religion = options?.religion ?? faker.helpers.arrayElement(religions);
 
   const randomProvince = faker.helpers.arrayElement(provincesData);
   const province = randomProvince.province;
