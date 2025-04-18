@@ -1,12 +1,31 @@
 # Thai Citizen ID Generator
 
-Generate valid Thai national ID numbers and mock Thai names — perfect for testing registration systems and mock user data.
+[![npm version](https://img.shields.io/npm/v/thai-citizenid-gen)](https://www.npmjs.com/package/thai-citizenid-gen)
+[![license](https://img.shields.io/npm/l/thai-citizenid-gen)](https://github.com/Chawit-hart/thai-citizenid-gen/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Chawit-hart/thai-citizenid-gen?style=social)](https://github.com/Chawit-hart/thai-citizenid-gen)
+[![Issues](https://img.shields.io/github/issues/Chawit-hart/thai-citizenid-gen)](https://github.com/Chawit-hart/thai-citizenid-gen/issues)
+
+Generate valid Thai national ID numbers and mock Thai person data — perfect for testing registration systems and mock user data.
+
+
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Sample Output](#sample-output)
+- [Use Cases](#use-cases)
+- [Contributing](#contributing)
+- [License](#license)
+
 
 ## Features
 
 - ✅ Generate valid 13-digit Thai citizen ID numbers
-- ✅ Random Thai first & last names
-- ✅ Export as objects (can be used for JSON, CSV, etc.)
+- ✅ Random or customizable Thai name, gender, religion, birth year, etc.
+- ✅ Export as objects (for use in JSON, CSV, etc.)
+- ✅ Deterministic generation with seed
 - ✅ Tiny and zero-dependency core
 
 
@@ -18,62 +37,154 @@ npm install thai-citizenid-gen
 
 ## Usage
 
-### Generate Data Without Export :
+### Basic Usage: Generate People Randomly
 
 ```ts
 import { generatePeople } from 'thai-citizenid-gen';
 
+// Generate 10 people with random name, gender, birthdate, religion, etc.
 const people = generatePeople(10);
 console.log(people);
 ```
 
-### Generate Data and Export as JSON/CSV : 
+### Advanced Usage: Customize the Generated Data
+You can control the result by passing an options object:
+
+```ts
+interface GenerateOptions {
+  gender: 'ชาย' | 'หญิง';      // Force male or female
+  bornYear: number;            // Specify a fixed birth year
+  religion: string;            // Specify a religion (e.g., 'พุทธ', 'คริสต์')
+  seed: number;                // Use for consistent, repeatable output
+}
+```
+
+### Example: Generate 5 people with fixed attributes
+
+```ts
+import { generatePeople } from 'thai-citizenid-gen';
+
+const people = generatePeople(5, {
+  gender: 'หญิง',
+  bornYear: 1990,
+  religion: 'พุทธ',
+  seed: 42,
+});
+
+console.log(people);
+```
+
+### Auto-incremented seed
+
+```ts
+// If seed = 42
+// Person 1 -> seed 42
+// Person 2 -> seed 43
+// ...
+```
+### Export Generated Data to Files
+
+Exports to both .json and .csv in the output/ directory.
 ```ts
 import { exportPeople } from 'thai-citizenid-gen';
 
-const peopleCount = 10;
-exportPeople(peopleCount);
+exportPeople(10, {
+  gender: 'ชาย',
+  bornYear: 1995,
+  religion: 'พุทธ',
+  seed: 1000,
+});
 ```
+Output files:
+
+```bash
+output/people.json
+output/people.csv
+```
+
+### Generate a Single Person
+
+```ts
+import { generateThaiID, generateMockPerson } from 'thai-citizenid-gen';
+
+const person = generateMockPerson({
+  gender: 'ชาย',
+  seed: 99,
+});
+console.log(person);
+
+const id = generateThaiID(); // just the 13-digit ID
+console.log('Thai ID:', id);
+```
+
 ## API Reference
 
+### `generateMockPerson(options?: Partial<GenerateOptions>): Person`
+
+Generates a single mock Thai person object.
+
+**Options (optional):**
 ```ts
-getRandomThaiName()
+interface GenerateOptions {
+  gender: 'ชาย' | 'หญิง';
+  bornYear: number;
+  religion: string;
+  seed: number;
+}
 ```
-Returns a random first and last name from the provided Thai names.
 
-```ts
-generateMockPerson()
-```
-### Generates a complete mock person data object that includes:
+### `generatePeople(count: number, options?: Partial<GenerateOptions>): Person[]`
+Generate multiple people.
 
-`id`
+- `count`: number of people to generate
+- `options`: same as above
+- Each person will auto-increment the seed (if provided)
 
-`firstName`, `lastName`, `gender`
-
-`birthDate`, `age`
-
-`religion`
-
-`laserCode`
-
-`issuedDate`, `expiredDate`
-
-`englishName`
-
-`province`, `district`, `subdistrict`, `postcode`
-
-`address` (formatted differently for Bangkok)
+**Example:**
 
 ```ts
-generatePeople(count: number)
+generatePeople(5, { gender: 'หญิง', seed: 100 });
 ```
-Returns an array of mock person objects according to the specified count.
+
+### `exportPeople(count: number, options?: Partial<GenerateOptions>): void`
+Generate and export people data to:
+
+- `output/people.json`
+- `output/people.csv`
+
+**Example:**
+```ts
+exportPeople(10, { bornYear: 1995, religion: 'พุทธ' });
+```
+
+### `generateThaiID(): string`
+Generates a valid Thai citizen ID (13 digits) using checksum logic.
+```ts
+const id = generateThaiID();
+```
+
+### `Person` Object Structure
 
 ```ts
-exportPeople(count: number)
+interface Person {
+  id: string;
+  firstName: string;
+  lastName: string;
+  gender: 'ชาย' | 'หญิง';
+  birthDate: string;
+  age: number;
+  religion: string;
+  laserCode: string;
+  issuedDate: string;
+  expiredDate: string;
+  englishName: string;
+  province: string;
+  district: string;
+  subdistrict: string;
+  postcode: string;
+  address: string;
+}
 ```
-Generates mock person data and exports the data to `output/people.json` and `output/people.csv`.
-
 ### Sample output:
 
 #### JSON
